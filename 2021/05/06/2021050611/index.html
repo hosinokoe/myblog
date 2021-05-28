@@ -14,7 +14,7 @@
 <meta property="og:description" content="ssh 工具使用系列(1)">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-05-06T03:41:58.000Z">
-<meta property="article:modified_time" content="2021-05-26T06:38:10.519Z">
+<meta property="article:modified_time" content="2021-05-28T02:56:39.123Z">
 <meta property="article:author" content="Xiao">
 <meta property="article:tag" content="ssh">
 <meta name="twitter:card" content="summary">
@@ -103,13 +103,12 @@
         <h1 id="ssh-工具使用系列-1"><a href="#ssh-工具使用系列-1" class="headerlink" title="ssh 工具使用系列(1)"></a>ssh 工具使用系列(1)</h1><a id="more"></a>
 <h2 id="ssh介绍-摘自阮一峰ssh教程"><a href="#ssh介绍-摘自阮一峰ssh教程" class="headerlink" title="ssh介绍(摘自阮一峰ssh教程)"></a>ssh介绍(摘自阮一峰ssh教程)</h2><p>历史上，网络主机之间的通信是不加密的，属于明文通信。这使得通信很不安全，一个典型的例子就是服务器登录。登录远程服务器的时候，需要将用户输入的密码传给服务器，如果这个过程是明文通信，就意味着传递过程中，线路经过的中间计算机都能看到密码，这是很可怕的。</p>
 <p>SSH 就是为了解决这个问题而诞生的，它能够加密计算机之间的通信，保证不被窃听或篡改。它还能对操作者进行认证（authentication）和授权（authorization）。明文的网络协议可以套用在它里面，从而实现加密。</p>
-<h2 id="openssh2格式pubkey转换为ssh格式pubkey"><a href="#openssh2格式pubkey转换为ssh格式pubkey" class="headerlink" title="openssh2格式pubkey转换为ssh格式pubkey"></a>openssh2格式pubkey转换为ssh格式pubkey</h2><p>ssh-keygen -i -f input_pubkey</p>
-<h2 id="从ssh格式的私钥读出公钥"><a href="#从ssh格式的私钥读出公钥" class="headerlink" title="从ssh格式的私钥读出公钥"></a>从ssh格式的私钥读出公钥</h2><p>ssh-keygen -y -f input_prikey</p>
-
+<h2 id="openssh2格式pubkey转换为ssh格式pubkey"><a href="#openssh2格式pubkey转换为ssh格式pubkey" class="headerlink" title="openssh2格式pubkey转换为ssh格式pubkey"></a>openssh2格式pubkey转换为ssh格式pubkey</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -i -f input_pubkey</span><br></pre></td></tr></table></figure>
+<h2 id="从ssh格式的私钥读出公钥"><a href="#从ssh格式的私钥读出公钥" class="headerlink" title="从ssh格式的私钥读出公钥"></a>从ssh格式的私钥读出公钥</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -y -f input_prikey</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://qiuzhi12.com/2021/05/06/2021050611/" data-id="ckp7q6wnk00051kw6grd19grp" data-title="ssh key的格式转换" class="article-share-link">Teilen</a>
+      <a data-url="https://qiuzhi12.com/2021/05/06/2021050611/" data-id="ckp7r4gui00050ew6h9543cr5" data-title="ssh key的格式转换" class="article-share-link">Teilen</a>
       
       
       
@@ -153,7 +152,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT%E7%90%86%E8%AE%BA/" rel="tag">IT理论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ansible/" rel="tag">ansible</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws-s3/" rel="tag">aws s3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%AD%A6%E4%B9%A0/" rel="tag">python学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT%E7%90%86%E8%AE%BA/" rel="tag">IT理论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ansible/" rel="tag">ansible</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/find/" rel="tag">find</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python%E5%AD%A6%E4%B9%A0/" rel="tag">python学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E3%80%90aws-s3%E3%80%91/" rel="tag">【aws,s3】</a></li></ul>
     </div>
   </div>
 
@@ -163,7 +162,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/IT%E7%90%86%E8%AE%BA/" style="font-size: 10px;">IT理论</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/aws-s3/" style="font-size: 10px;">aws s3</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/python%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">python学习</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a>
+      <a href="/tags/IT%E7%90%86%E8%AE%BA/" style="font-size: 10px;">IT理论</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/find/" style="font-size: 10px;">find</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/python%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">python学习</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/%E3%80%90aws-s3%E3%80%91/" style="font-size: 10px;">【aws,s3】</a>
     </div>
   </div>
 
@@ -185,6 +184,14 @@
       <ul>
         
           <li>
+            <a href="/2021/05/28/2021052811/">2021052811</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/28/2021052810/">find 通过name 查询多个文件夹</a>
+          </li>
+        
+          <li>
             <a href="/2021/05/27/2021052717/">git清理本地过大文件</a>
           </li>
         
@@ -194,14 +201,6 @@
         
           <li>
             <a href="/2021/05/18/2021051811/">mysql查询结果映射等</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/06/2021050611/">ssh key的格式转换</a>
-          </li>
-        
-          <li>
-            <a href="/2021/04/13/2021041314/">ansible 指定 hosts 的妙用</a>
           </li>
         
       </ul>
