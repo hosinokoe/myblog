@@ -4,16 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Tag: IT理论 | HelloMan</title>
+  <title>centos8下远程开机 | HelloMan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Sun is up">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HelloMan">
-<meta property="og:url" content="https://qiuzhi12.com/tags/IT%E7%90%86%E8%AE%BA/index.html">
+  <meta name="description" content="linux自动化系列(1)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos8下远程开机">
+<meta property="og:url" content="https://qiuzhi12.com/2021/06/10/2021061013/index.html">
 <meta property="og:site_name" content="HelloMan">
-<meta property="og:description" content="Sun is up">
+<meta property="og:description" content="linux自动化系列(1)">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-06-10T05:48:02.000Z">
+<meta property="article:modified_time" content="2021-06-15T09:14:23.623Z">
 <meta property="article:author" content="Xiao">
+<meta property="article:tag" content="centos">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="HelloMan" type="application/atom+xml">
@@ -75,39 +78,76 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/01/10/2021011017/" class="archive-article-date">
-  <time class="dt-published" datetime="2021-01-10T09:36:34.000Z" itemprop="datePublished">Jan 10</time>
+        <section id="main"><article id="post-2021061013" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/06/10/2021061013/" class="article-date">
+  <time class="dt-published" datetime="2021-06-10T05:48:02.000Z" itemprop="datePublished">2021-06-10</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/10/2021011017/">学习编程的目标</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      centos8下远程开机
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="linux自动化系列-1"><a href="#linux自动化系列-1" class="headerlink" title="linux自动化系列(1)"></a>linux自动化系列(1)</h1><a id="more"></a>
+<h2 id="BIOS设置"><a href="#BIOS设置" class="headerlink" title="BIOS设置"></a>BIOS设置</h2><p>公司购买的两台电脑用的都是微星主板，BIOS设置如下</p>
+<ol>
+<li>高级-&gt;电源配置-&gt;[ERP Ready]禁用</li>
+<li>高级-&gt;唤醒事件-&gt;[由PCI-E设备唤醒]开启</li>
+</ol>
+<h2 id="拿到目标服务器的mac地址，查看网卡是否支持唤醒"><a href="#拿到目标服务器的mac地址，查看网卡是否支持唤醒" class="headerlink" title="拿到目标服务器的mac地址，查看网卡是否支持唤醒"></a>拿到目标服务器的mac地址，查看网卡是否支持唤醒</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[fuin@66 ~]$ ip a</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: enp1s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000</span><br><span class="line">    link/ether 2c:f0:5d:93:0e:b9 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.40.66/24 brd 192.168.40.255 scope global noprefixroute enp1s0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::b03:d8c1:49af:b599/64 scope link noprefixroute</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+<p>网卡为enp1s0，mac地址为 link/ether 后的 2c:f0:5d:93:0e:b9 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@66 fuin]# ethtool enp1s0|grep Wake-on</span><br><span class="line">	Supports Wake-on: pumbg</span><br><span class="line">	Wake-on: g</span><br></pre></td></tr></table></figure>
+<p>网卡显示支持远程唤醒</p>
+<h2 id="在另一台centos8服务器上安装执行唤醒命令"><a href="#在另一台centos8服务器上安装执行唤醒命令" class="headerlink" title="在另一台centos8服务器上安装执行唤醒命令"></a>在另一台centos8服务器上安装执行唤醒命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@88 fuin]# yum install wol</span><br><span class="line">上次元数据过期检查：1:22:03 前，执行于 2021年06月10日 星期四 12时34分55秒。</span><br><span class="line">软件包 wol-0.7.1-23.el8.x86_64 已安装。</span><br><span class="line">依赖关系解决。</span><br><span class="line">无需任何处理。</span><br><span class="line">完毕！</span><br><span class="line">[root@88 fuin]# wol 2c:f0:5d:93:0e:b9</span><br><span class="line">Waking up 2c:f0:5d:93:0e:b9...</span><br></pre></td></tr></table></figure>
+<h2 id="通过互联网唤醒"><a href="#通过互联网唤醒" class="headerlink" title="通过互联网唤醒"></a>通过互联网唤醒</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wol -i publicip -p 10009 macaddress</span><br></pre></td></tr></table></figure>
+<p>10009为重定向的端口，wol使用端口9，将目标mac地址的9转到外部ip的10009端口，即可实现该操作</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://qiuzhi12.com/2021/06/10/2021061013/" data-id="ckqbs5m4v000johw62x5h26tl" data-title="centos8下远程开机" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos/" rel="tag">centos</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/06/25/2021062511/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          terraform 新建ec2服务器小技巧
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/06/09/2021060918/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">nginx开放部分url的basic认证</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

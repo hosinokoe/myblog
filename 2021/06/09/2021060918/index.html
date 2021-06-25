@@ -4,16 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Tag: IT理论 | HelloMan</title>
+  <title>nginx开放部分url的basic认证 | HelloMan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Sun is up">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HelloMan">
-<meta property="og:url" content="https://qiuzhi12.com/tags/IT%E7%90%86%E8%AE%BA/index.html">
+  <meta name="description" content="nginx配置系列(1)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx开放部分url的basic认证">
+<meta property="og:url" content="https://qiuzhi12.com/2021/06/09/2021060918/index.html">
 <meta property="og:site_name" content="HelloMan">
-<meta property="og:description" content="Sun is up">
+<meta property="og:description" content="nginx配置系列(1)">
 <meta property="og:locale">
+<meta property="article:published_time" content="2021-06-09T10:11:36.000Z">
+<meta property="article:modified_time" content="2021-06-09T10:29:40.780Z">
 <meta property="article:author" content="Xiao">
+<meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="HelloMan" type="application/atom+xml">
@@ -75,39 +78,69 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/01/10/2021011017/" class="archive-article-date">
-  <time class="dt-published" datetime="2021-01-10T09:36:34.000Z" itemprop="datePublished">Jan 10</time>
+        <section id="main"><article id="post-2021060918" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/06/09/2021060918/" class="article-date">
+  <time class="dt-published" datetime="2021-06-09T10:11:36.000Z" itemprop="datePublished">2021-06-09</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/10/2021011017/">学习编程的目标</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      nginx开放部分url的basic认证
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="nginx配置系列-1"><a href="#nginx配置系列-1" class="headerlink" title="nginx配置系列(1)"></a>nginx配置系列(1)</h1><a id="more"></a>
+<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><p>nginx是俄罗斯人Igor Sysoev编写的一个高性能web server。强项是静态页面显示。在与apache的竞争中，几乎是毫无悬念的不断抢占apache的市场。</p>
+<h2 id="nginx的区块"><a href="#nginx的区块" class="headerlink" title="nginx的区块"></a>nginx的区块</h2><p>nginx的主要区块如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">events &#123;&#125;</span><br><span class="line">http &#123;</span><br><span class="line">  server &#123;</span><br><span class="line">    location &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>basic一般在location里面。如果使用location区块来区分需要忽略的url，会让nginx代码的嵌套变得麻烦而且不易理解。这时我们可以使用if来做判断。</p>
+<p>譬如如果要忽略/api/跟/oauth/token。可以这么做</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location &#123;</span><br><span class="line">  ...</span><br><span class="line">  if ( $request_uri ~ ^/api/|/oauth/token) &#123;set $auth_basic off;&#125;</span><br><span class="line">  if ( $request_uri !~ ^/api/|/oauth/token) &#123;set $auth_basic Secret;&#125;</span><br><span class="line">  auth_basic_user_file  htpasswd;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://qiuzhi12.com/2021/06/09/2021060918/" data-id="ckqbs5m4t000hohw67sgrhgy4" data-title="nginx开放部分url的basic认证" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/06/10/2021061013/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          centos8下远程开机
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/05/28/2021052811/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">zabbix3.0添加slack推送</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
