@@ -4,19 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>python小知识 | HelloMan</title>
+  <title>mysqldump使用条件做部分导出 | HelloMan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="python break 与 continue的区别。">
+  <meta name="description" content="mysql实用技巧系列(2)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python小知识">
-<meta property="og:url" content="https://qiuzhi12.com/2021/01/10/test/index.html">
+<meta property="og:title" content="mysqldump使用条件做部分导出">
+<meta property="og:url" content="https://qiuzhi12.com/2021/07/14/mysqldump-with-where/index.html">
 <meta property="og:site_name" content="HelloMan">
-<meta property="og:description" content="python break 与 continue的区别。">
+<meta property="og:description" content="mysql实用技巧系列(2)">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-01-10T08:23:46.000Z">
-<meta property="article:modified_time" content="2021-01-14T02:40:47.395Z">
+<meta property="article:published_time" content="2021-07-14T07:35:38.000Z">
+<meta property="article:modified_time" content="2021-07-14T07:47:25.386Z">
 <meta property="article:author" content="Xiao">
-<meta property="article:tag" content="python学习">
+<meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="HelloMan" type="application/atom+xml">
@@ -78,10 +78,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-test" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-mysqldump-with-where" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/01/10/test/" class="article-date">
-  <time class="dt-published" datetime="2021-01-10T08:23:46.000Z" itemprop="datePublished">2021-01-10</time>
+    <a href="/2021/07/14/mysqldump-with-where/" class="article-date">
+  <time class="dt-published" datetime="2021-07-14T07:35:38.000Z" itemprop="datePublished">2021-07-14</time>
 </a>
     
   </div>
@@ -92,7 +92,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      python小知识
+      mysqldump使用条件做部分导出
     </h1>
   
 
@@ -100,30 +100,21 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="python-break-与-continue的区别"><a href="#python-break-与-continue的区别" class="headerlink" title="python break 与 continue的区别"></a>python break 与 continue的区别</h1><a id="more"></a>
-<p>最近在写的一个python程序。需要用到一些无限循环以及判断。其中有几个无限循环需要跳出，但是不能跳出最终的大循环。大循环会一直跑，而满足条件会进入下一层的无限循环，下一层的无限循环在满足条件的时候需要中断任务，跳出循环。这其中就需要了解break与continue的区别。</p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>break与continue实际上都有中断当前任务的功能，而break是直接跳出循环，continue则是继续执行后面的循环。</p>
-<p>我们来看几个代码例子</p>
-<p>例1</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="keyword">for</span> n <span class="keyword">in</span> range(1,10):</span><br><span class="line">...   <span class="keyword">if</span> n % 2 == 0:</span><br><span class="line">...     <span class="built_in">print</span>(n)</span><br><span class="line">...   <span class="keyword">if</span> n &gt; 5:</span><br><span class="line">...     <span class="built_in">break</span></span><br><span class="line">...</span><br><span class="line">2</span><br><span class="line">4</span><br><span class="line">6</span><br></pre></td></tr></table></figure>
-<p>这段代码用来打印10以内的偶数，当这个数大于5的时候暂停。这里体现了break的功能，跳出for与while循环。不过结果还是打印到了6。这里程序设计有点问题。我们稍微改一下</p>
-<p>例2</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="keyword">for</span> n <span class="keyword">in</span> range(1,10):</span><br><span class="line">...   <span class="keyword">if</span> n % 2 ==0 and n &lt; 5:</span><br><span class="line">...     <span class="built_in">print</span>(n)</span><br><span class="line">...</span><br><span class="line">2</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
-<p>这次顺利的打印了出来</p>
-<p>例3</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="keyword">for</span> n <span class="keyword">in</span> range(1,10):</span><br><span class="line">...   <span class="keyword">if</span> n == 6:</span><br><span class="line">...     <span class="built_in">continue</span></span><br><span class="line">...   <span class="keyword">if</span> n % 2 == 0:</span><br><span class="line">...     <span class="built_in">print</span>(n)</span><br><span class="line">...</span><br><span class="line">2</span><br><span class="line">4</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
-<p>这段代码展示了continue的功能。当循环到6这个数的时候跳出了当前任务，继续执行了后面的循环，结果就是到没有打印6</p>
-<h2 id="经验总结"><a href="#经验总结" class="headerlink" title="经验总结"></a>经验总结</h2><p>以前写自己的py程序的时候并没有经常用到死循环，也就是无限循环。对break/continue的理解不是很深，对他们的理解大致上就是跳出或者跳过执行的印象。因为break短一点比较好打，就直接全用了break。</p>
-<p>在编写无限循环的程序时候，因为程序大部分时间不需要暂停跳出，只有出现一些特殊情况才会执行到break，结果导致了很多bug，查了半天结果是break跟continue掌握不熟导致。</p>
+        <h1 id="mysql实用技巧系列-2"><a href="#mysql实用技巧系列-2" class="headerlink" title="mysql实用技巧系列(2)"></a>mysql实用技巧系列(2)</h1><a id="more"></a>
+<h2 id="mysql选择导出"><a href="#mysql选择导出" class="headerlink" title="mysql选择导出"></a>mysql选择导出</h2><p>很多时候mysqldump都是全表导出，甚至全库导出。这适用于库跟表比较小的情况，但是有时候一个表可能有几G，甚至几十G，甚至更大。这个时候需要使用选择导出，节省导出导入的时间。</p>
+<h2 id="通过mysql-e导出数据"><a href="#通过mysql-e导出数据" class="headerlink" title="通过mysql -e导出数据"></a>通过mysql -e导出数据</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -e &quot;select * from table where condition&quot; | pigz -c &gt; $dump</span><br></pre></td></tr></table></figure>
+<p>这个方法适用于数据量比较少的情况，而且导出的是类似csv的结构，不能导入。</p>
+<h2 id="使用mysqldump的where参数"><a href="#使用mysqldump的where参数" class="headerlink" title="使用mysqldump的where参数"></a>使用mysqldump的where参数</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump --single-transaction --where &quot;created_at &gt;= &#x27;$times&#x27;&quot; | pigz -c &gt; $dump</span><br></pre></td></tr></table></figure>
+<p>这个方法在数据量较大的情况下也能正常输出，实验数据在10G左右。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://qiuzhi12.com/2021/01/10/test/" data-id="ckr36lblv000qq9w6aibh1lyv" data-title="python小知识" class="article-share-link">Teilen</a>
+      <a data-url="https://qiuzhi12.com/2021/07/14/mysqldump-with-where/" data-id="ckr36lblu000pq9w61qsv5s0h" data-title="mysqldump使用条件做部分导出" class="article-share-link">Teilen</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python%E5%AD%A6%E4%B9%A0/" rel="tag">python学习</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
 
     </footer>
   </div>
@@ -131,19 +122,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2021/01/10/2021011017/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
-      <div class="article-nav-title">
-        
-          学习编程的目标
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/01/10/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/06/25/2021062511/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">terraform 新建ec2服务器小技巧</div>
     </a>
   
 </nav>
